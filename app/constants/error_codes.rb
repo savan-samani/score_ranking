@@ -1,0 +1,45 @@
+# frozen_string_literal: true
+
+class ErrorCodes
+  # Base error codes
+  BASE_NOT_FOUND_ERROR = 404_000
+  BASE_SERVER_ERROR_OTHERS = 990_000
+  BASE_VALIDATION_ERROR_CLIENT = 400_000
+  BASE_VALIDATION_ERROR_DB = 300_000
+
+  # Routing / 404
+  NO_ROUTING = BASE_NOT_FOUND_ERROR + 1
+  RECORD_NOT_FOUND = BASE_NOT_FOUND_ERROR + 2
+
+  # General Model Validations
+  VALIDATION_ERROR_CODES = {
+    blank: BASE_VALIDATION_ERROR_CLIENT + 1,
+    empty: BASE_VALIDATION_ERROR_CLIENT + 1,
+    present: BASE_VALIDATION_ERROR_CLIENT + 2,
+    not_a_number: BASE_VALIDATION_ERROR_CLIENT + 3,
+    not_an_integer: BASE_VALIDATION_ERROR_CLIENT + 3,
+    accepted: BASE_VALIDATION_ERROR_CLIENT + 4,
+
+    equal_to: BASE_VALIDATION_ERROR_CLIENT + 11,
+    greater_than: BASE_VALIDATION_ERROR_CLIENT + 12,
+    greater_than_or_equal_to: BASE_VALIDATION_ERROR_CLIENT + 13,
+    less_than: BASE_VALIDATION_ERROR_CLIENT + 14,
+    less_than_or_equal_to: BASE_VALIDATION_ERROR_CLIENT + 15,
+    odd: BASE_VALIDATION_ERROR_CLIENT + 16,
+    even: BASE_VALIDATION_ERROR_CLIENT + 17,
+
+    wrong_length: BASE_VALIDATION_ERROR_CLIENT + 21,
+    too_short: BASE_VALIDATION_ERROR_CLIENT + 22,
+    too_long: BASE_VALIDATION_ERROR_CLIENT + 23,
+    invalid: BASE_VALIDATION_ERROR_CLIENT + 24,
+
+    inclusion: BASE_VALIDATION_ERROR_CLIENT + 31,
+    exclusion: BASE_VALIDATION_ERROR_CLIENT + 32,
+
+    taken: BASE_VALIDATION_ERROR_DB + 1
+  }.freeze
+
+  def self.to_validation_error_code(error_type)
+    VALIDATION_ERROR_CODES[error_type] || BASE_VALIDATION_ERROR_CLIENT
+  end
+end
