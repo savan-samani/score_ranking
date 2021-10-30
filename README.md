@@ -1,4 +1,4 @@
-# Top Score Ranking
+# Score Ranking
 
 This application only implemented APIs, will be used to keep scores for a group of player.
 
